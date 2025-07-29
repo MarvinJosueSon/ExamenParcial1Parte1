@@ -162,4 +162,4 @@ while True:
         case "7":
             print("Saliendo...")
         case _:
-            print("Opcion no encontrada")
+            print("Opcion no encontrada.")
