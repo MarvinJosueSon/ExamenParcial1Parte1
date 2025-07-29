@@ -16,6 +16,8 @@ class Desempeño:
         self.trabajoEquipo = trabajoEquipo
         self.productividad = productividad
         self.observaciones = observaciones
+        self.promedio = promedio
+        self.estado = estado
 
     def mostrar(self):
         print(f"Puntualidad: {self.puntualidad}")
@@ -50,14 +52,20 @@ def Ingresar():
             if puntualidadAux>=1 and puntualidadAux<=10:
                 trabajoEquipoAux=int(input("Ingrese la capacidad del empleado de trabajo en equipo (1 a 10): "))
                 if trabajoEquipoAux>=1 and trabajoEquipoAux<=10:
-                    productividadAux=int(input("Ingrese la productividad del empleado en la escala de (1 a 10)"))
+                    productividadAux=int(input("Ingrese la productividad del empleado en la escala de (1 a 10): "))
                     if productividadAux>=1 and productividadAux<=10:
                         promedioAux=(puntualidadAux+trabajoEquipoAux+productividadAux)//3
                         if promedioAux>=7:
                             estadoAux="Safisfactorio"
                         else:
-                            estadoAux="Mojorar"
+                            estadoAux="Mejorar"
                         desempeñoAux=Desempeño(puntualidadAux,trabajoEquipoAux,productividadAux,observacionesAux,promedioAux,estadoAux)
+                        empleadosDiccionario[idAux]={
+                            "informacion": empleadoAux,
+                            "contacto": contatoAux,
+                            "desempeño": desempeñoAux
+                        }
+                        print("INGRESADO CON EXITO")
                 else:
                     print("ERROR: Debe ser un numero entero en el rango indicado")
             else:
@@ -66,3 +74,25 @@ def Ingresar():
             print("ERROR: El Id ya existe en el sistema por favor cambielo")
     except ValueError:
         print("ERROR: PARAMETROS INCORRECTOS")
+def verEmpleados():
+    for clave, valor in empleadosDiccionario.items():
+        print(f"Codigo: {clave}")
+        valor["informacion"].mostrar()
+        valor["contacto"].mostrar()
+        valor["desempeño"].mostrar()
+        print("---------------------------"*10)
+
+while True:
+    print("==MENU==")
+    print("1. Ingresar empleado")
+    print("2. Ver empleados ingresados")
+    print("3. Buscar empleado por codigo")
+    print("4. Mostrar solo empleados satisfactorios")
+    print("5. Mejor promedio")
+    print("6. Eliminar empleado")
+    opcion=input("Ingrese el numero de opcion: ")
+    match opcion:
+        case "1":
+            Ingresar()
+        case "2":
+            verEmpleados()
