@@ -125,7 +125,7 @@ def eliminarEmpleado():
     if len(empleadosDiccionario)>0:
         eliminarId=input("Ingrese el ID del empleado a eliminar: ")
         if eliminarId in empleadosDiccionario:
-            confirmacion=input(f"Para confirmar la eliminacion del empleado con ID {eliminarId} escriba 'eliminar'")
+            confirmacion=input(f"Para confirmar la eliminacion del empleado con ID {eliminarId} escriba 'eliminar': ")
             if confirmacion=="eliminar":
                 del empleadosDiccionario[eliminarId]
                 print("Eliminado correctamente")
@@ -144,6 +144,7 @@ while True:
     print("4. Mostrar solo empleados satisfactorios")
     print("5. Mejor promedio")
     print("6. Eliminar empleado")
+    print("7. Salir")
     opcion=input("Ingrese el numero de opcion: ")
     match opcion:
         case "1":
@@ -156,3 +157,9 @@ while True:
             empleadosSatisfactorios()
         case "5":
             mejorPromedio()
+        case "6":
+            eliminarEmpleado()
+        case "7":
+            print("Saliendo...")
+        case _:
+            print("Opcion no encontrada")
