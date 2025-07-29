@@ -81,7 +81,26 @@ def verEmpleados():
         valor["contacto"].mostrar()
         valor["desempeño"].mostrar()
         print("---------------------------"*10)
+def buscar():
+    if len(empleadosDiccionario)>0:
+        buscarIdAux=input("Ingrese el ID del empleado a buscar: ")
+        if buscarIdAux in empleadosDiccionario:
+            print("Empleado encontrado")
+            print(f"Codigo: {buscarIdAux}")
+            empleadosDiccionario[buscarIdAux]["informacion"].mostrar()
+            empleadosDiccionario[buscarIdAux]["contacto"].mostrar()
+            empleadosDiccionario[buscarIdAux]["desempeño"].mostrar()
+        else:
+            print("Empleado no encontrado")
 
+    else:
+        print("ERROR: Aun no hay empleados disponibles")
+def empleadosSatisfactorios():
+    if len(empleadosDiccionario)>0:
+        print("Empleados satisfactorios")
+        for clave, valor in empleadosDiccionario.items():
+            if valor["desempeño"].estado=="Safisfactorio":
+                print(f"Nombre: {valor["informacion"].nombre}; ID:{clave}")
 while True:
     print("==MENU==")
     print("1. Ingresar empleado")
@@ -96,3 +115,7 @@ while True:
             Ingresar()
         case "2":
             verEmpleados()
+        case "3":
+            buscar()
+        case "4":
+            empleadosSatisfactorios()
