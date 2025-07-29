@@ -101,6 +101,41 @@ def empleadosSatisfactorios():
         for clave, valor in empleadosDiccionario.items():
             if valor["desempeño"].estado=="Safisfactorio":
                 print(f"Nombre: {valor["informacion"].nombre}; ID:{clave}")
+    else:
+        print("ERROR: Aun no hay empleados satisfactorios")
+def mejorPromedio():
+    if len(empleadosDiccionario)>0:
+        NombreAux=""
+        idAux=""
+        mayorAux=0
+        for clave, valor in empleadosDiccionario.items():
+            if valor["desempeño"].promedio>mayorAux:
+                nombreAux=valor["informacion"].nombre
+                idAux=clave
+                mayorAux=valor["desempeño"].promedio
+
+        print("Empleado con mejor desempeño: ")
+        print(f"Nombre: {nombreAux}")
+        print(f"ID: {idAux}")
+        print(f"Promedio de desempeño: {mayorAux}")
+
+    else:
+        print("Aun no hay empleados ingresado")
+def eliminarEmpleado():
+    if len(empleadosDiccionario)>0:
+        eliminarId=input("Ingrese el ID del empleado a eliminar: ")
+        if eliminarId in empleadosDiccionario:
+            confirmacion=input(f"Para confirmar la eliminacion del empleado con ID {eliminarId} escriba 'eliminar'")
+            if confirmacion=="eliminar":
+                del empleadosDiccionario[eliminarId]
+                print("Eliminado correctamente")
+            else:
+                print("Operacion cancelada")
+        else:
+            print("ID no encontrada")
+    else:
+        print("ERROR: Aun no hay empleados ingresados")
+
 while True:
     print("==MENU==")
     print("1. Ingresar empleado")
@@ -119,3 +154,5 @@ while True:
             buscar()
         case "4":
             empleadosSatisfactorios()
+        case "5":
+            mejorPromedio()
